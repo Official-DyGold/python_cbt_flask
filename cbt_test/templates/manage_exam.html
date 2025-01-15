@@ -1,0 +1,164 @@
+{% extends "layout.html "%}
+    {% block content %}
+    <main id="main" class="main">
+        <div class="pagetitle">
+            <h1>Exam Question Form</h1>
+                <nav>
+                    <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="{{ url_for('main.home') }}">Home</a></li>
+                    <li class="breadcrumb-item">Admin Activities</li>
+                    <li class="breadcrumb-item active">Exam Question Section</li>
+                    </ol>
+                </nav>
+        </div><!-- End Page Title -->
+        <div class="container">
+            <section class="section register min-vh-200 d-flex flex-column  py-1">
+                <div class="container">
+                    <div class="row ">
+                        <div class="col-lg-12">
+                            <div class="card form-container">
+                                <div class="card-body">
+                                    <div class="pt-2 pb-2">
+                                        <h5 class="card-title text-center pb-0 fs-4">Question Details</h5>
+                                        <p class="text-center small">Enter the question details below</p>
+                                    </div>
+                    
+                                    <form method="POST" action="" enctype="multipart/form-data">
+                                        {{ form.hidden_tag() }} 
+                                        <div class="row form-group mb-3">
+                                            {{ form.questionID.label(class="form-label") }}
+                                            {% if form.questionID.errors %}
+                                                {{ form.questionID(class="form-control") }}
+                                                <div class="invalid-feedback">
+                                                    {% for error in form.questionID.errors %}
+                                                        <span>{{ error }}</span>
+                                                    {% endfor %}
+                                                </div>
+                                            {% else %}
+                                                <div class="col-md-9">
+                                                    {{ form.questionID(class="form-control") }}
+                                                </div>
+                                                <div class="d-grid col-md-3">
+                                                    {{ form.search(class="form-submit btn btn-outline-primary") }}
+                                                </div>
+                                            {% endif %}
+                                        </div>
+                                        <div class="form-group mb-3">
+                                            {{ form.questions.label(class="form-label") }}
+                                            {% if form.questions.errors %}
+                                                {{ form.questions(class="form-control") }}
+                                                <div class="invalid-feedback">
+                                                    {% for error in form.questions.errors %}
+                                                        <span>{{ error }}</span>
+                                                    {% endfor %}
+                                                </div>
+                                            {% else %}
+                                                    {{ form.questions(class="form-control") }}
+                                            {% endif %}
+                                        </div>
+                                        <div class="form-group mb-3">
+                                            {{ form.imageFile.label(class="form-label") }}
+                                            {{ form.imageFile(class='form-control') }}
+                                            {% if form.imageFile.errors %}
+                                                {% for error in form.imageFile.errors %}
+                                                    <span class="text-danger">{{ error }}</span><br>
+                                                {% endfor %}
+                                            {% endif %}
+                                        </div>
+                                        <div class="form-group mb-3">
+                                            {{ form.option1.label(class="form-label") }}
+                                            {% if form.option1.errors %}
+                                                {{ form.option1(class="form-control") }}
+                                                <div class="invalid-feedback">
+                                                    {% for error in form.option1.errors %}
+                                                        <span>{{ error }}</span>
+                                                    {% endfor %}
+                                                </div>
+                                            {% else %}
+                                                    {{ form.option1(class="form-control") }}
+                                            {% endif %}
+                                        </div>
+                                        <div class="form-group mb-3">
+                                            {{ form.option2.label(class="form-label") }}
+                                            {% if form.option2.errors %}
+                                                {{ form.option2(class="form-control") }}
+                                                <div class="invalid-feedback">
+                                                    {% for error in form.option2.errors %}
+                                                        <span>{{ error }}</span>
+                                                    {% endfor %}
+                                                </div>
+                                            {% else %}
+                                                    {{ form.option2(class="form-control") }}
+                                            {% endif %}
+                                        </div>
+                                        <div class="form-group mb-3">
+                                            {{ form.option3.label(class="form-label") }}
+                                            {% if form.option3.errors %}
+                                                {{ form.option3(class="form-control") }}
+                                                <div class="invalid-feedback">
+                                                    {% for error in form.option3.errors %}
+                                                        <span>{{ error }}</span>
+                                                    {% endfor %}
+                                                </div>
+                                            {% else %}
+                                                    {{ form.option3(class="form-control") }}
+                                            {% endif %}
+                                        </div>
+                                        <div class="form-group mb-3">
+                                            {{ form.option4.label(class="form-label") }}
+                                            {% if form.option4.errors %}
+                                                {{ form.option4(class="form-control") }}
+                                                <div class="invalid-feedback">
+                                                    {% for error in form.option4.errors %}
+                                                        <span>{{ error }}</span>
+                                                    {% endfor %}
+                                                </div>
+                                            {% else %}
+                                                    {{ form.option4(class="form-control") }}
+                                            {% endif %}
+                                        </div>
+                                        <div class="form-group mb-3">
+                                            {{ form.answer.label(class="form-label") }}
+                                            {% if form.answer.errors %}
+                                                {{ form.answer(class="form-control") }}
+                                                <div class="invalid-feedback">
+                                                    {% for error in form.answer.errors %}
+                                                        <span>{{ error }}</span>
+                                                    {% endfor %}
+                                                </div>
+                                            {% else %}
+                                                    {{ form.answer(class="form-control") }}
+                                            {% endif %}
+                                        </div>
+                                        <div class="col-md-12">
+                                            {% with messages =  get_flashed_messages(with_categories=true) %}
+                                              {% if messages %}
+                                                {% for category, message in messages %}
+                                                  <div class="alert alert-{{ category }}">
+                                                    {{ message }}
+                                                  </div>
+                                                {% endfor %}
+                                              {% endif %}
+                                            {% endwith %}
+                                        </div>
+                                        <div class="row form-group">
+                                            <div class="d-grid gap-2 mt-3 pt-4 pb-4 col-md-4">
+                                                {{ form.submit(class="form-submit btn btn-outline-primary") }}
+                                            </div>
+                                            <div class="d-grid gap-2 mt-3 pt-4 pb-4 col-md-4">
+                                                {{ form.update(class="form-submit btn btn-outline-primary") }}
+                                            </div>
+                                            <div class="d-grid gap-2 mt-3 pt-4 pb-4 col-md-4">
+                                                {{ form.delete(class="form-submit btn btn-outline-danger") }}
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+      </main>
+    {% endblock %}

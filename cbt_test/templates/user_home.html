@@ -1,0 +1,42 @@
+{% extends "user_layout.html" %}
+    {% block content %}
+    <div class="container">
+        <section class="section register min-vh-200 d-flex flex-column  py-1">
+            <div class="container">
+                <div class="row ">
+                    <div class="col-lg-12">
+                        <div class="card form-container">
+                            <div class="card-body">
+                                <div class="pt-2 pb-2">
+                                    <h5 class="card-title text-center pb-0 fs-4">Welcome! You are set to take ESEF Python Text</h5>
+                                    <p class="text-center small">Please click on enter to start exam</p>
+                                    <h2> 
+                                        {% if score.score == None %}
+                                            {{ score.status }}
+                                        {% else %}
+                                            Your Text Score is: {{ score.score }}
+                                        {% endif %}
+                                    </h2>
+                                </div>
+                                <div class="col-md-12">
+                                    {% with messages =  get_flashed_messages(with_categories=true) %}
+                                      {% if messages %}
+                                        {% for category, message in messages %}
+                                          <div class="alert alert-{{ category }}">
+                                            {{ message }}
+                                          </div>
+                                        {% endfor %}
+                                      {% endif %}
+                                    {% endwith %}
+                                  </div>
+                                <div class="d-flex justify-content-center mt-4">
+                                    <a href="{{ url_for('main.examSection') }}" class="btn btn-outline-primary btn-center gap-2 mt-4">Start Exam</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+    {% endblock %}

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ESEF Python CBT login</title>
+    <meta content="" name="A CBT Test">
+    <meta content="" name="cbt_test">
+
+    <link href="https://fonts.gstatic.com" rel="preconnect">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+
+    <link rel="stylesheet" href="fonts/material-icon/css/material-design-iconic-font.min.css">
+    <link rel="stylesheet" href="css/style.css">
+
+    <link href="{{ url_for('static', filename='style_login.css') }}" rel="stylesheet">
+    <link href="{{ url_for('static', filename='style.css') }}" rel="stylesheet">
+</head>
+<body>
+    <div class="main">
+        <section class="signup">
+            <div class="container"> 
+                <div class="signup-content">
+                    <div class="card-body">
+                        <form method="POST" action="">
+                            {{ form.hidden_tag() }}
+                            <h2 class="form-title">Login</h2>
+                            <div class="form-group">
+                                {% if form.username.errors %}
+                                    {{ form.username(class="form-input") }}
+                                    <div class="invalid-feedback">
+                                        {% for error in form.username.errors %}
+                                            <span>{{ error }}</span>
+                                        {% endfor %}
+                                    </div>
+                                {% else %}
+                                        {{ form.username(class="form-input", placeholder="Username") }}
+                                {% endif %}
+                            </div>
+                            <div class="form-group">
+                                {% if form.password.errors %}
+                                    {{ form.password(class="form-input") }}
+                                    <div class="invalid-feedback">
+                                        {% for error in form.password.errors %}
+                                            <span>{{ error }}</span>
+                                        {% endfor %}
+                                    </div>
+                                {% else %}
+                                        {{ form.password(class="form-input", placeholder="Password") }}
+                                {% endif %}
+                            </div>
+                            <div class="col-md-8">
+                                {% with messages =  get_flashed_messages(with_categories=true) %}
+                                  {% if messages %}
+                                    {% for category, message in messages %}
+                                      <div class="alert alert-{{ category }}">
+                                        {{ message }}
+                                      </div>
+                                    {% endfor %}
+                                  {% endif %}
+                                {% endwith %}
+                            </div>
+                            <div class="form-group">
+                                {{ form.submit(class="form-submit") }}
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+</body>
+<script src="../static/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="../static/main.js"></script>
+</body>
+</html>

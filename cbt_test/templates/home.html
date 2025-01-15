@@ -1,0 +1,84 @@
+{% extends "layout.html "%}
+    {% block content %}
+        <main id="main" class="main">
+            <div class="pagetitle">
+                <h1>Home Page</h1>
+                <nav>
+                    <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="{{ url_for('main.home') }}">Home</a></li>
+                    <li class="breadcrumb-item">Admin Activities</li>
+                    <li class="breadcrumb-item active">Home Page</li>
+                    </ol>
+                </nav>
+            </div>
+            <section class="section">
+                <div class="row">
+                    <div class="col-md-12">
+                        {% with messages =  get_flashed_messages(with_categories=true) %}
+                          {% if messages %}
+                            {% for category, message in messages %}
+                              <div class="alert alert-{{ category }}">
+                                {{ message }}
+                              </div>
+                            {% endfor %}
+                          {% endif %}
+                        {% endwith %}
+                      </div>
+                    <div class="col-lg-6">
+                        <div class="card">
+                            <div class="card-body">
+                                <h5 class="card-title">Total Student Registered</h5>
+                                    <h1>{{ total_students }}</h1>
+                                <p></p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="card">
+                            <div class="card-body">
+                                <h5 class="card-title">Total Student that score above average</h5>
+                                    <h1>{{ above_average_count }}</h1>
+                                <p></p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="card">
+                            <div class="card-body">
+                                <h5 class="card-title">Total Student that score below average</h5>
+                                    <h1>{{ below_average_count }}</h1>
+                                <p></p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="card">
+                            <div class="card-body">
+                                <h5 class="card-title">Total student yet to take test</h5>
+                                    <h1>{{ total_left_student }}</h1>
+                                <p></p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="card">
+                            <div class="card-body">
+                                <h5 class="card-title">Total Admin</h5>
+                                    <h1>{{ total_admin }}</h1>
+                                <p></p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="card">
+                            <div class="card-body">
+                                <h5 class="card-title">Total Super Admin</h5>
+                                    <h1>{{ total_super_admin }}</h1>
+                                <p></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+    {% endblock content %}

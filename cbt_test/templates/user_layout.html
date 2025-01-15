@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ESEF Python CBT Admin</title>
+    <meta content="" name="A CBT Test">
+    <meta content="" name="cbt_test">
+  
+    <link href="https://fonts.gstatic.com" rel="preconnect">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+  
+    <link href="../static/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../static/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+    <link href="../static/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+    <link href="../static/vendor/quill/quill.snow.css" rel="stylesheet">
+    <link href="../static/vendor/quill/quill.bubble.css" rel="stylesheet">
+    <link href="../static/vendor/remixicon/remixicon.css" rel="stylesheet">
+    <link href="../static/vendor/simple-datatables/style.css" rel="stylesheet">
+
+    <link href="{{ url_for('static', filename='style.css') }}" rel="stylesheet"> 
+</head>
+<body>
+    <header id="header" class="header fixed-top d-flex align-items-center">
+
+        <div class="d-flex align-items-center justify-content-between">
+          <a href="{{ url_for('main.userHome') }}" class="logo d-flex align-items-center">
+            <img src="#" alt="">
+            <span class="d-none d-lg-block">ESEF Python CBT Test</span>
+          </a>
+        </div>
+    
+        <nav class="header-nav ms-auto">
+          <ul class="d-flex align-items-center">
+            <li class="nav-item d-block d-lg-none">
+              <a class="nav-link nav-icon search-bar-toggle " href="#">
+                <i class="bi bi-search"></i>
+              </a>
+            </li>
+    
+            <li class="nav-item dropdown pe-3">
+              <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
+                <img src="#" alt="">
+                <span class="d-none d-md-block dropdown-toggle ps-2">Student Actions</span>
+              </a>
+    
+              <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
+                <li class="dropdown-header">
+                  <h6></h6>
+                  <span>Student</span>
+                </li>
+                <li><hr class="dropdown-divider"></li>
+                <li>
+                  <a class="dropdown-item d-flex align-items-center" href="#">
+                    <i class="bi bi-person"></i>
+                    <span>Profile</span>
+                  </a>
+                  <a class="dropdown-item d-flex align-items-center" href="{{ url_for('main.userLogout') }}">
+                    <i class="bi bi-arrow-right"></i>
+                    <span>Logout</span>
+                  </a>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </nav>
+      </header>
+    <main style="margin-top: 80px;" class="main">
+        {% block content %}
+        {% endblock %}
+    </main>
+    <script src="../static/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="../static/main.js"></script>
+</body>
+</html>
