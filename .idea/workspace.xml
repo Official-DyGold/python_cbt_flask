@@ -1,7 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
   <component name="ChangeListManager">
-    <list default="true" id="1b17945c-1fd1-4035-9991-75691e42e5bf" name="Changes" comment="" />
+    <list default="true" id="1b17945c-1fd1-4035-9991-75691e42e5bf" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/cbt_test/templates/add_admin.html" beforeDir="false" afterPath="$PROJECT_DIR$/cbt_test/templates/add_admin.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cbt_test/templates/all_question.html" beforeDir="false" afterPath="$PROJECT_DIR$/cbt_test/templates/all_question.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cbt_test/templates/all_student.html" beforeDir="false" afterPath="$PROJECT_DIR$/cbt_test/templates/all_student.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/requirements.txt" beforeDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -10,6 +18,18 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
+  "lastFilter": {
+    "state": "OPEN",
+    "assignee": "Official-DyGold"
+  }
+}]]></component>
+  <component name="GithubPullRequestsUISettings"><![CDATA[{
+  "selectedUrlAndAccountId": {
+    "url": "https://github.com/Official-DyGold/python_cbt_flask.git",
+    "accountId": "ef85598c-49ea-4e50-a77a-fdc3d316c5cc"
+  }
+}]]></component>
   <component name="ProjectColorInfo"><![CDATA[{
   "associatedIndex": 4
 }]]></component>
@@ -22,7 +42,8 @@
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "master"
+    "git-widget-placeholder": "main",
+    "settings.editor.selected.configurable": "com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable"
   }
 }]]></component>
   <component name="RunManager">

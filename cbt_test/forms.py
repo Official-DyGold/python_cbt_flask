@@ -56,7 +56,7 @@ class registrationExam(FlaskForm):
 class registrationAdmin(FlaskForm):
     username = StringField('Username', validators=[DataRequired(), Length(min=6, max=25)])
     email = StringField('Email', validators=[DataRequired(), Email()])
-    auth = StringField('Authentication', default='Super Admin')
+    auth = StringField('Authentication', default='Normal Admin')
     password = PasswordField('Password', validators=[DataRequired()])
     confirmPassword = PasswordField('Confirm Password', validators=[DataRequired(), EqualTo('password')])
     submit = SubmitField('Add Admin')
