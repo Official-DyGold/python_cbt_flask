@@ -16,7 +16,7 @@ def home():
     total_admin = Admin.query.count()
     total_super_admin = Admin.query.filter(Admin.auth == 'Super Admin').count()
     total_students = Student.query.count()
-    average_score = 40
+    average_score = 50
     above_average_count = Student.query.filter(Student.score < average_score).count()
     below_average_count = Student.query.filter(Student.score > average_score).count()
     total_left_student = Student.query.filter(Student.status == 'Text Not Taken Yet').count()
@@ -36,7 +36,8 @@ def login():
     
     form = loginForm()
     if form.validate_on_submit():
-        user = Admin.query.filter_by(username=form.username.data).first()
+        user_input = form.username.data.strip().lower() 
+        user = Admin.query.filter_by(username=user_input).first()
         if user and check_password_hash(user.password, form.password.data):
             login_user(user, remember = form.remember.data)
             return redirect(url_for('main.home'))
@@ -54,7 +55,8 @@ def manageStudent():
             flash('All field is required', 'heading')
         else:
             try:
-                student = Student(studentID=form.studentID.data, fullname=form.fullname.data, email=form.email.data)
+                user_input = form.studentID.data.strip().lower()
+                student = Student(studentID=user_input, fullname=form.fullname.data, email=form.email.data)
                 db.session.add(student)
                 db.session.commit()
                 flash('Student has been registered!', 'success')
@@ -66,14 +68,16 @@ def manageStudent():
                 flash(f'Error adding question: {str(e)}', 'danger')
                 return redirect(url_for('main.manageStudent'))
     elif form.search.data: 
-        student = Student.query.filter_by(studentID=form.studentID.data).first()
+        user_input = form.studentID.data.strip().lower()
+        student = Student.query.filter_by(studentID=user_input).first()
         if student:
             form.fullname.data = student.fullname
             form.email.data = student.email
         else:
             flash('Invalid Student ID!', 'heading')
     elif form.update.data:
-        student = Student.query.filter_by(studentID=form.studentID.data).first()
+        user_input = form.studentID.data.strip().lower()
+        student = Student.query.filter_by(studentID=user_input).first()
         if student:
             try:
                 student.fullname = form.fullname.data
@@ -93,7 +97,8 @@ def manageStudent():
         adminform = current_user.username
         username = Admin.query.filter_by(username=adminform).first()
         if username and username.auth == 'Super Admin':
-            student_to_delete = Student.query.filter_by(studentID=form.studentID.data).first()
+            user_input = form.studentID.data.strip().lower()
+            student_to_delete = Student.query.filter_by(studentID=user_input).first()
             if student_to_delete:
                 db.session.delete(student_to_delete)
                 db.session.commit()
@@ -248,15 +253,16 @@ def addAdmin():
         return redirect(url_for('main.home'))
 
     if form.validate_on_submit():
+        user_input = form.username.data.strip().lower()
         existing_user = Admin.query.filter(
-            (Admin.username == form.username.data) | (Admin.email == form.email.data)
+            (Admin.username == user_input) | (Admin.email == form.email.data)
         ).first()
         if existing_user:
             flash('Username or Email already exists.', 'heading')
         else:
             hashed_password = generate_password_hash(form.password.data)
             admin = Admin(
-                username=form.username.data,
+                username=user_input,
                 email=form.email.data,
                 password=hashed_password,
                 auth=form.auth.data if current_user.auth == 'Super Admin' else None
@@ -280,7 +286,8 @@ def singleStudent():
         if form.studentID.data == '':
             flash('Student ID can not be empty!', 'heading')
         else:
-            student = Student.query.filter_by(studentID=form.studentID.data).first()
+            user_input = form.studentID.data.strip().lower()
+            student = Student.query.filter_by(studentID=user_input).first()
             if student:
                 check=student.score
                 if check == None:
@@ -321,7 +328,8 @@ def allQuestion():
 def userLogin():    
     form = userLoginPage()
     if form.validate_on_submit():
-        user = Student.query.filter_by(studentID=form.studentID.data).first()
+        user_input = form.studentID.data.strip().lower()
+        user = Student.query.filter_by(studentID=user_input).first()
         if user:
             session['studentID'] = user.studentID
             session['logged_in'] = True  
