@@ -5,10 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1b17945c-1fd1-4035-9991-75691e42e5bf" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/cbt_test/templates/add_admin.html" beforeDir="false" afterPath="$PROJECT_DIR$/cbt_test/templates/add_admin.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cbt_test/templates/all_question.html" beforeDir="false" afterPath="$PROJECT_DIR$/cbt_test/templates/all_question.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cbt_test/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/cbt_test/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cbt_test/forms.py" beforeDir="false" afterPath="$PROJECT_DIR$/cbt_test/forms.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cbt_test/routes.py" beforeDir="false" afterPath="$PROJECT_DIR$/cbt_test/routes.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cbt_test/templates/all_student.html" beforeDir="false" afterPath="$PROJECT_DIR$/cbt_test/templates/all_student.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/requirements.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/instance/site.db" beforeDir="false" afterPath="$PROJECT_DIR$/instance/site.db" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -18,34 +20,34 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
-  "lastFilter": {
-    "state": "OPEN",
-    "assignee": "Official-DyGold"
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;Official-DyGold&quot;
   }
-}]]></component>
-  <component name="GithubPullRequestsUISettings"><![CDATA[{
-  "selectedUrlAndAccountId": {
-    "url": "https://github.com/Official-DyGold/python_cbt_flask.git",
-    "accountId": "ef85598c-49ea-4e50-a77a-fdc3d316c5cc"
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/Official-DyGold/python_cbt_flask.git&quot;,
+    &quot;accountId&quot;: &quot;ef85598c-49ea-4e50-a77a-fdc3d316c5cc&quot;
   }
-}]]></component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "associatedIndex": 4
-}]]></component>
+}</component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 4
+}</component>
   <component name="ProjectId" id="2rgEkS7qRQtg6lPo7byLmeH2Cva" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "main",
-    "settings.editor.selected.configurable": "com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable&quot;
   }
-}]]></component>
+}</component>
   <component name="RunManager">
     <configuration name="main" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
       <module name="python_cbt_test" />

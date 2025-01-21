@@ -18,7 +18,7 @@ def create_app():
 
     loginManager.login_view = 'main.login'
     loginManager.login_message_category = 'info'
-    
+        
     from cbt_test.routes import main
     app.register_blueprint(main)
     

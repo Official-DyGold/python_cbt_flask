@@ -1,8 +1,11 @@
-import random, string, os, secrets
+import random, string, os, secrets, io
+from reportlab.platypus import SimpleDocTemplate, Table, TableStyle, Paragraph, Spacer
+from reportlab.lib.styles import getSampleStyleSheet
+from reportlab.lib import colors
 from PIL import Image
-from flask import render_template, session, url_for, flash, redirect, Blueprint, jsonify
+from flask import render_template, session, url_for, flash, redirect, Blueprint, jsonify, send_file
 from flask_login import login_required, current_user, login_user, logout_user
-from cbt_test.forms import registrationStudent, registrationExam, registrationAdmin, loginForm, singleCheck, userLoginPage, examField
+from cbt_test.forms import registrationStudent, registrationExam, registrationAdmin, loginForm, singleCheck, userLoginPage, examField, downloadAllStudent
 from werkzeug.security import check_password_hash, generate_password_hash
 from cbt_test.models import Admin, Student, testQuestion
 from cbt_test import db
@@ -304,7 +307,44 @@ def singleStudent():
 @login_required
 def allStudent():
     students=Student.query.all()
-    return render_template("all_student.html", students=students)
+    form = downloadAllStudent()
+
+    if form.download.data:
+        pdf_buffer = io.BytesIO()
+        doc = SimpleDocTemplate(pdf_buffer)
+
+        data = [["Student ID", "Fullname", "Email", "Score"]]
+
+        styles = getSampleStyleSheet()
+        title = Paragraph("Student Full Details", styles['Title'])
+
+        y = 760 
+        for student in students:
+            data.append([
+                student.studentID,
+                student.fullname,
+                student.email,
+                student.score if student.score is not None else student.status,
+            ])
+
+        table = Table(data)
+        table.setStyle(TableStyle([
+            ('BACKGROUND', (0, 0), (-1, 0), colors.grey), 
+            ('TEXTCOLOR', (0, 0), (-1, 0), colors.whitesmoke),  
+            ('ALIGN', (0, 0), (-1, -1), 'CENTER'), 
+            ('FONTNAME', (0, 0), (-1, 0), 'Helvetica-Bold'), 
+            ('BOTTOMPADDING', (0, 0), (-1, 0), 10),  
+            ('BACKGROUND', (0, 1), (-1, -1), colors.beige),
+            ('GRID', (0, 0), (-1, -1), 1, colors.black) 
+        ]))
+
+        elements = [title, Spacer(1, 20), table]
+        doc.build(elements)
+        pdf_buffer.seek(0)
+
+        return send_file(pdf_buffer, as_attachment=True, download_name="students_table.pdf", mimetype='application/pdf')
+
+    return render_template("all_student.html", students=students, form=form)
 
 @main.route("/logout")
 def logout():

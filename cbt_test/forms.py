@@ -87,3 +87,6 @@ class examField(FlaskForm):
     startExam = SubmitField('Start Test')
     nextExam = SubmitField('Next Question')
     previousExam = SubmitField('Previous Question')
+
+class downloadAllStudent(FlaskForm):
+    download = SubmitField('Download Student Details as PDF')
