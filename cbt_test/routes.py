@@ -464,17 +464,19 @@ def userLogin():
         user = Student.query.filter_by(studentID=user_input).first()
         if user:
             session['studentID'] = user.studentID
+            session['fullname'] = user.fullname
             session['logged_in'] = True  
             return redirect(url_for('main.userHome'))
         else:
-            flash('Email or Password incorrect', 'heading')
+            flash('Incorrect Student ID! Please check or contact Admin', 'heading')
 
     return render_template("user_login.html", form=form)
 
 @main.route("/user_home", methods=['GET', 'POST'])
 def userHome():
+    student = Student.query.filter_by(studentID=session['studentID']).first()
     score = Student.query.filter_by(studentID=session.get('studentID')).first()
-    return render_template("user_home.html", score=score)
+    return render_template("user_home.html", score=score, student=student)
 
 @main.route("/exam_section", methods=['GET', 'POST'])
 def examSection():
