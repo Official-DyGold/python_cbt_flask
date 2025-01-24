@@ -75,6 +75,7 @@ class singleCheck(FlaskForm):
     studentID = StringField('Student Id', validators=[DataRequired()])
     score = StringField('Student Score')
     submit = SubmitField('Check')
+    updateScore = SubmitField('Update Score')
 
 class userLoginPage(FlaskForm):
     studentID = StringField('Student ID', validators=[DataRequired()])

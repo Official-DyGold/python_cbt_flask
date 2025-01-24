@@ -20,9 +20,9 @@ def home():
     total_super_admin = Admin.query.filter(Admin.auth == 'Super Admin').count()
     total_students = Student.query.count()
     average_score = 50
-    above_average_count = Student.query.filter(Student.score < average_score).count()
-    below_average_count = Student.query.filter(Student.score > average_score).count()
-    total_left_student = Student.query.filter(Student.status == 'Text Not Taken Yet').count()
+    above_average_count = Student.query.filter(Student.score >= average_score).count()
+    below_average_count = Student.query.filter(Student.score < average_score).count()
+    total_left_student = Student.query.filter(Student.score == None).count()
     return render_template("home.html", 
                            total_students=total_students, 
                            above_average_count=above_average_count, 
@@ -285,6 +285,12 @@ def addAdmin():
 @login_required
 def singleStudent():
     form = singleCheck()
+    adminform = current_user.username
+    username = Admin.query.filter_by(username=adminform).first()
+    if username and username.auth == 'Super Admin':
+        user = 'go'
+    else:
+        user = None
     if form.submit.data:
         if form.studentID.data == '':
             flash('Student ID can not be empty!', 'heading')
@@ -299,8 +305,21 @@ def singleStudent():
                     form.score.data = student.score
             else:
                 flash('Invalid Student ID!', 'heading')
-                
-    return render_template("single_student.html", form=form)
+    elif form.updateScore.data:
+        user_input = form.studentID.data.strip().lower()
+        student = Student.query.filter_by(studentID=user_input).first()
+        if student:
+            try:
+                student.score = form.score.data
+                db.session.commit()
+                flash('Student has been updated successfully!', 'success')
+            except Exception as e:
+                db.session.rollback()
+                flash(f'Error adding question: {str(e)}', 'danger')
+                return redirect(url_for('main.manageStudent'))
+        else:
+            flash('Invalid Student ID!', 'heading')
+    return render_template("single_student.html", form=form, username=user)
 
 
 @main.route("/all_student", methods=['GET', 'POST'])
