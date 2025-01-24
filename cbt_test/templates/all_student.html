@@ -46,8 +46,16 @@
                                                     </tbody>
                                                 {% endfor %}
                                             </table>
-                                            <div class="d-grid">
-                                                {{ form.download(class="form-submit btn btn-outline-primary") }}
+                                            <div class="row form-group">
+                                                <div class="d-grid gap-2 mt-3 pt-4 pb-4 col-md-4">
+                                                    {{ form.downloadAllStudent(class="form-submit btn btn-outline-primary") }}
+                                                </div>
+                                                <div class="d-grid gap-2 mt-3 pt-4 pb-4 col-md-4">
+                                                    {{ form.downloadScoreStudent(class="form-submit btn btn-outline-primary") }}
+                                                </div>
+                                                <div class="d-grid gap-2 mt-3 pt-4 pb-4 col-md-4">
+                                                    {{ form.downloadNoScoreStudent(class="form-submit btn btn-outline-primary") }}
+                                                </div>
                                             </div>
                                         </div>
                                     </div>

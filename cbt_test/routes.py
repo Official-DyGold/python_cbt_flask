@@ -311,6 +311,7 @@ def singleStudent():
         if student:
             try:
                 student.score = form.score.data
+                student.status = 'Exam Taken'
                 db.session.commit()
                 flash('Student has been updated successfully!', 'success')
             except Exception as e:
@@ -328,7 +329,7 @@ def allStudent():
     students=Student.query.all()
     form = downloadAllStudent()
 
-    if form.download.data:
+    if form.downloadAllStudent.data:
         pdf_buffer = io.BytesIO()
         doc = SimpleDocTemplate(pdf_buffer)
 
@@ -362,8 +363,80 @@ def allStudent():
         pdf_buffer.seek(0)
 
         return send_file(pdf_buffer, as_attachment=True, download_name="students_table.pdf", mimetype='application/pdf')
+    
+    elif form.downloadScoreStudent.data:
+        pdf_buffer = io.BytesIO()
+        doc = SimpleDocTemplate(pdf_buffer)
 
-    return render_template("all_student.html", students=students, form=form)
+        data = [["Student ID", "Fullname", "Email", "Score"]]
+
+        styles = getSampleStyleSheet()
+        title = Paragraph("Student Full Details", styles['Title'])
+
+        y = 760 
+        for student in students:
+            if student.score is not None:
+                data.append([
+                    student.studentID,
+                    student.fullname,
+                    student.email,
+                    student.score if student.score is not None else student.status,
+                ])
+
+        table = Table(data)
+        table.setStyle(TableStyle([
+            ('BACKGROUND', (0, 0), (-1, 0), colors.grey), 
+            ('TEXTCOLOR', (0, 0), (-1, 0), colors.whitesmoke),  
+            ('ALIGN', (0, 0), (-1, -1), 'CENTER'), 
+            ('FONTNAME', (0, 0), (-1, 0), 'Helvetica-Bold'), 
+            ('BOTTOMPADDING', (0, 0), (-1, 0), 10),  
+            ('BACKGROUND', (0, 1), (-1, -1), colors.beige),
+            ('GRID', (0, 0), (-1, -1), 1, colors.black) 
+        ]))
+
+        elements = [title, Spacer(1, 20), table]
+        doc.build(elements)
+        pdf_buffer.seek(0)
+
+        return send_file(pdf_buffer, as_attachment=True, download_name="students_table.pdf", mimetype='application/pdf')
+    
+    elif form.downloadNoScoreStudent.data:
+        pdf_buffer = io.BytesIO()
+        doc = SimpleDocTemplate(pdf_buffer)
+
+        data = [["Student ID", "Fullname", "Email", "Score"]]
+
+        styles = getSampleStyleSheet()
+        title = Paragraph("Student Full Details", styles['Title'])
+
+        y = 760 
+        for student in students:
+            if student.score is None:
+                data.append([
+                    student.studentID,
+                    student.fullname,
+                    student.email,
+                    student.score if student.score is not None else student.status,
+                ])
+
+        table = Table(data)
+        table.setStyle(TableStyle([
+            ('BACKGROUND', (0, 0), (-1, 0), colors.grey), 
+            ('TEXTCOLOR', (0, 0), (-1, 0), colors.whitesmoke),  
+            ('ALIGN', (0, 0), (-1, -1), 'CENTER'), 
+            ('FONTNAME', (0, 0), (-1, 0), 'Helvetica-Bold'), 
+            ('BOTTOMPADDING', (0, 0), (-1, 0), 10),  
+            ('BACKGROUND', (0, 1), (-1, -1), colors.beige),
+            ('GRID', (0, 0), (-1, -1), 1, colors.black) 
+        ]))
+
+        elements = [title, Spacer(1, 20), table]
+        doc.build(elements)
+        pdf_buffer.seek(0)
+
+        return send_file(pdf_buffer, as_attachment=True, download_name="students_table.pdf", mimetype='application/pdf')
+
+    return render_template("all_student.html",  form=form, students=students)
 
 @main.route("/logout")
 def logout():

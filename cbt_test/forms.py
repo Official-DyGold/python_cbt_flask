@@ -90,4 +90,6 @@ class examField(FlaskForm):
     previousExam = SubmitField('Previous Question')
 
 class downloadAllStudent(FlaskForm):
-    download = SubmitField('Download Student Details as PDF')
+    downloadAllStudent = SubmitField('Download all Student')
+    downloadScoreStudent = SubmitField('Download Student with Score')
+    downloadNoScoreStudent = SubmitField('Download Student without Score')
