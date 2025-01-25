@@ -476,7 +476,10 @@ def userLogin():
 def userHome():
     student = Student.query.filter_by(studentID=session['studentID']).first()
     score = Student.query.filter_by(studentID=session.get('studentID')).first()
-    return render_template("user_home.html", score=score, student=student)
+
+    status = 'Time as pass contact Admin'
+
+    return render_template("user_home.html", score=score, student=student, status=status)
 
 @main.route("/exam_section", methods=['GET', 'POST'])
 def examSection():
